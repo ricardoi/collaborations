@@ -1,0 +1,16 @@
+#! bin/bash
+module load ufrc
+module load R
+
+#@     YourScript.R that process that one file
+# list of files you want to process in YourScript.R
+ ls -lt *.YourFile | awk '{print $8}' > YourFile.ls
+
+#@ begining loop
+while IFS= read FILE;
+do
+  #@ loctasomething.txt inputs structure must be: 
+  #@ Rig211, XopAD, XopJ6 
+  Archivo1=(awk '{print $1}' loctagsomething.txt)
+  Rscript --vanilla ViNAt.R $Archivo1
+ done < YourFile.ls
